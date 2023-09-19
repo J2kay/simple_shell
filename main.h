@@ -9,6 +9,8 @@
 #include <string.h>
 #include <errno.h>
 
+#define BUFF_SIZE 1024
+
 int built_in_do(char **arg, char *buffer);
 int pro_start(char **arg, char *filepath);
 int first_pro_start(char **arg);
