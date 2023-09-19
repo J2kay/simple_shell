@@ -9,6 +9,7 @@
 int error_print(char *str, int counter, char *arg)
 {
 	char num = counter + '0';
+
 	errno = 2;
 
 	_puts(str);

@@ -6,29 +6,22 @@
  */
 char *my_getenv(const char *name)
 {
-	char *store, *tokens;
-	int i, j;
+	const char *store;
+	int i;
+	ssize_t namelen;
 
+
+	namelen = strlen(name);
 	if (name == NULL)
-	{
 		return (NULL);
-	}
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		store = _strdup(environ[i]);
-		if (store == NULL)
+		if (strncmp(environ[i], name, namelen) == 0)
 		{
-			for (j = 0; j < i; j++)
-				free(store);
-			return (NULL);
+			store = strchr(environ[i], '=');
+			if (store)
+				return ((char *)(store + 1));
 		}
-		tokens = strtok(store, "=");
-		if (_strcmp(tokens, (char *)name) == 0)
-		{
-			tokens = strtok(NULL, "=");
-			return (tokens);
-		}
-		free(store);
 	}
 	return (NULL);
 }
