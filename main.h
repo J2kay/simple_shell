@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+
+#define BUFF_SIZE 1024
+
 int built_in_do(char **arg, char *buffer);
 int pro_start(char **arg, char *filepath);
 int first_pro_start(char **arg);
@@ -28,4 +31,5 @@ int _putchar(char c);
 void _puts(char *str);
 int error_print(char *str, int counter, char *arg);
 void handle_comments(char *buff);
+ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
 #endif
