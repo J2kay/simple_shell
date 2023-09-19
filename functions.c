@@ -46,6 +46,7 @@ char *com_path(char *com)
 			if (new == NULL)
 			{
 				perror("allocation failure");
+				free(path_cpy);
 				return (NULL);
 			}
 			_strcpy(new, token);
@@ -64,6 +65,7 @@ char *com_path(char *com)
 		}
 		free(path_cpy);
 	}
+	free(new);
 	return (NULL);
 }
 /**
