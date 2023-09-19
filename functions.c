@@ -6,7 +6,7 @@
  */
 char **read_com(char *str)
 {
-	char **args = NULL, *tokens;
+	char **args = NULL, *tokens = NULL;
 	int i = 0, len = 0;
 
 	len = _strlen(str);

@@ -36,18 +36,20 @@ char *_strcpy(char *dest, char *src)
 
 char *_strcat(char *dest, char *src)
 {
-	int a, b;
+	int a, b, d_len = 0;
 
 
 
 	for (b = 0; dest[b] != '\0'; b++)
 	{
+		d_len++;
 	}
 
 	for (a = 0; src[a] != '\0'; a++)
 	{
-		dest[b + a] = src[a];
+		dest[d_len + a] = src[a];
 	}
+	dest[d_len + a] = '\0';
 	return (dest);
 }
 /**
@@ -95,7 +97,7 @@ int _strcmp(char *s1, char *s2)
 char *_strdup(char *str)
 {
 	int i, j, len = 0;
-	char *new;
+	char *new = NULL;
 
 	if (str == NULL)
 		return (NULL);
@@ -103,14 +105,14 @@ char *_strdup(char *str)
 	{
 		len++;
 	}
-
+	free(new);
 	new = malloc(sizeof(char) * (len + 1));
 	if (new == NULL)
 	{
 		return (NULL);
 	}
 
-	for (j = 0; j < len; j++)
+	for (j = 0; str[j] != '\0'; j++)
 	{
 		new[j] = str[j];
 	}
