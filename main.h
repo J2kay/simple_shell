@@ -27,4 +27,5 @@ void my_free(char **mem);
 int _putchar(char c);
 void _puts(char *str);
 int error_print(char *str, int counter, char *arg);
+void handle_comments(char *buff);
 #endif

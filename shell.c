@@ -24,6 +24,7 @@ int main(int argc, char **argv)
 			free(buffer);
 			exit(0);
 		}
+		handle_comments(buffer);
 		new = read_com(buffer);
 		if (new[0] == NULL)
 		{
@@ -31,9 +32,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 		if (built_in_do(new, buffer) == 1)
-		{
 			continue;
-		}
 		if (access(new[0], X_OK) == 0)
 			first_pro_start(new);
 		else
