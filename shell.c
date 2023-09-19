@@ -31,7 +31,9 @@ int main(int argc, char **argv)
 			continue;
 		}
 		if (built_in_do(new, buffer) == 1)
+		{
 			continue;
+		}
 		if (access(new[0], X_OK) == 0)
 			first_pro_start(new);
 		else
@@ -42,7 +44,6 @@ int main(int argc, char **argv)
 			pro_start(new, f_path);
 		}
 	}
-	my_free(new);
 	free(buffer);
 	return (0);
 }

@@ -12,7 +12,9 @@ char **read_com(char *str)
 	len = _strlen(str);
 	args = malloc(sizeof(char *) * (len + 1));
 	if (args == NULL)
+	{
 		return (NULL);
+	}
 	tokens = strtok(str, " \n ");
 	while (tokens != NULL)
 	{
@@ -37,7 +39,10 @@ char *com_path(char *com)
 	if (file_path != NULL && com != NULL)
 	{
 		if (stat(com, &storage) == 0)
+		{
+			free(file_path);
 			return (com);
+		}
 		path_cpy = _strdup(file_path);
 		token = strtok(path_cpy, ":");
 		while (token != NULL)
@@ -65,7 +70,6 @@ char *com_path(char *com)
 		}
 		free(path_cpy);
 	}
-	free(new);
 	return (NULL);
 }
 /**
@@ -77,6 +81,7 @@ char *com_path(char *com)
 int pro_start(char **arg, char *filepath)
 {
 	pid_t pro_pid;
+	int state;
 
 	pro_pid = fork();
 	if (pro_pid == 0)
@@ -100,7 +105,12 @@ int pro_start(char **arg, char *filepath)
 	}
 	else
 	{
-		wait(NULL);
+		wait(&state);
+		if (WIFEXITED(state))
+			state = WEXITSTATUS(state);
+		errno = state;
+		free(arg);
+		free(filepath);
 	}
 	return (1);
 }
@@ -112,7 +122,7 @@ int pro_start(char **arg, char *filepath)
 int first_pro_start(char **arg)
 {
 	pid_t pid;
-	int state = 2;
+	int state;
 
 	pid = fork();
 	if (pid == 0)
@@ -132,6 +142,7 @@ int first_pro_start(char **arg)
 		if (WIFEXITED(state))
 			state = WEXITSTATUS(state);
 		errno = state;
+		free(arg);
 
 	}
 	return (state);

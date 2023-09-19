@@ -32,6 +32,7 @@ int my_env(char  **arg, char *buffer)
 			write(1, "\n", 1);
 			print++;
 		}
+		free(arg);
 	}
 	return (1);
 }

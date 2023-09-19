@@ -6,9 +6,10 @@
  * @arg: command entered
  * Return: void
  */
-void error_print(char *str, int counter, char *arg)
+int error_print(char *str, int counter, char *arg)
 {
 	char num = counter + '0';
+	errno = 2;
 
 	_puts(str);
 	_puts(": ");
@@ -16,5 +17,5 @@ void error_print(char *str, int counter, char *arg)
 	_puts(": ");
 	_puts(arg);
 	_puts(": not found\n");
-	exit(127);
+	return (errno);
 }

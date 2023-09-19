@@ -96,16 +96,12 @@ int _strcmp(char *s1, char *s2)
 
 char *_strdup(char *str)
 {
-	int i, j, len = 0;
+	int j, len = 0;
 	char *new = NULL;
 
 	if (str == NULL)
 		return (NULL);
-	for (i = 0; str[i] != '\0'; i++)
-	{
-		len++;
-	}
-	free(new);
+	len = _strlen(str);
 	new = malloc(sizeof(char) * (len + 1));
 	if (new == NULL)
 	{
@@ -116,6 +112,6 @@ char *_strdup(char *str)
 	{
 		new[j] = str[j];
 	}
-	new[len] = '\0';
+	new[j] = '\0';
 	return (new);
 }

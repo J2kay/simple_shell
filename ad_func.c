@@ -7,7 +7,7 @@
 char *my_getenv(const char *name)
 {
 	char *store, *tokens;
-	int i;
+	int i, j;
 
 	if (name == NULL)
 	{
@@ -17,7 +17,11 @@ char *my_getenv(const char *name)
 	{
 		store = _strdup(environ[i]);
 		if (store == NULL)
+		{
+			for (j = 0; j < i; j++)
+				free(store);
 			return (NULL);
+		}
 		tokens = strtok(store, "=");
 		if (_strcmp(tokens, (char *)name) == 0)
 		{
